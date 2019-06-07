@@ -15,18 +15,15 @@ class CommentList {
 					event.target.parentNode.parentNode.remove();
 					break;
 				case "reply-button":
-					let textAlignElement = event.target.parentNode;
-					let replyButton = event.target;
-					event.target.remove();
-					/* removing the reply button. again added after replied */
-					inputComment.create(textAlignElement, (value) => {
+					event.target.classList.toggle("hidden");
+					inputComment.create(event.target.parentNode, (value) => {
 						const commentObj = {
 							text: value,
 							createdAt: new Date(),
 							postedBy: "Anonymous"
 						};
-						textAlignElement.appendChild(replyButton);
-						this.addComment(textAlignElement, commentObj, "appendChild")
+						event.target.classList.toggle("hidden");
+						this.addComment(event.target.parentNode, commentObj, "appendChild")
 					}, true);
 				default:
 					return;
